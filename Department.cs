@@ -27,7 +27,7 @@ namespace COMP003A.EmployeeManagementSystem
 
         public void Operate()
         {
-            Console.WriteLine("Performs operations that relate to employee-realted issues, recruitment, compensation/benefits, training, compliance, etc.");
+            Console.WriteLine("Performs operations that relate to employee-realted issues, recruitment, compensation, training, compliance, etc.");
         }
     }
 

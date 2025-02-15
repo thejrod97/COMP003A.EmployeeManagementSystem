@@ -80,11 +80,11 @@ namespace COMP003A.EmployeeManagementSystem
         {
             if (string.IsNullOrWhiteSpace(MiddleName))
             {
-                Console.WriteLine($"{FirstName} {LastName}");
+                Console.WriteLine($"Name: {FirstName} {LastName}");
             }
             else
             {
-                Console.WriteLine($"{FirstName} {MiddleName} {LastName}");
+                Console.WriteLine($"Name: {FirstName} {MiddleName} {LastName}");
             }
         }
 

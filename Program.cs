@@ -4,8 +4,15 @@
 // Purpose: Employee management system demonstrating OOP principles in C#
 namespace COMP003A.EmployeeManagementSystem
 {
+    /// <summary>
+    /// This is the main class for the program and it encompasses all of the other classes from the other files.
+    /// </summary>
     public static class Program
     {
+        /// <summary>
+        /// Entry point for the program and contains prompts to ask the user for Employee information so it can save the data and display it.
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             Console.Write("Enter Employee ID: ");
@@ -20,20 +27,9 @@ namespace COMP003A.EmployeeManagementSystem
             Console.Write("Enter Last Name: ");
             string lastName = Console.ReadLine();
 
-            double salary;
-            while (true)
-            {
-                Console.Write("Enter Salary: ");
-                if (double.TryParse(Console.ReadLine(), out salary) && salary >=0)
-                {
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid entry. Please enter an amount that is greater than or equal to 0.");
-                }
-            }
-
+            Console.Write("Enter Salary: ");
+            double salary = double.Parse(Console.ReadLine());
+        
             Employee employee1 = new Employee(emloyeeId, firstName, middleName, lastName, salary);
 
             Console.WriteLine("\nEmployee Created Successfully!\n");

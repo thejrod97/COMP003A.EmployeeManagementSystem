@@ -15,38 +15,57 @@ namespace COMP003A.EmployeeManagementSystem
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            Console.Write("Enter Employee ID: ");
-            string emloyeeId = Console.ReadLine();
+            // Added exception handling for parsing salary, employee constructor, first name, last name, and salary.
+            try
+            {
+                Console.Write("Enter Employee ID: ");
+                string emloyeeId = Console.ReadLine();
 
-            Console.Write("Enter First Name: ");
-            string firstName = Console.ReadLine();
+                Console.Write("Enter First Name: ");
+                string firstName = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(firstName))
+                    throw new ArgumentException("First name can't be null or have white space.");
 
-            Console.Write("Enter Middle Name (Press Enter to skip): ");
-            string middleName = Console.ReadLine();
+                Console.Write("Enter Middle Name (Press Enter to skip): ");
+                string middleName = Console.ReadLine();
 
-            Console.Write("Enter Last Name: ");
-            string lastName = Console.ReadLine();
+                Console.Write("Enter Last Name: ");
+                string lastName = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(lastName))
+                    throw new ArgumentException("Last name can't be null or have white space.");
 
-            Console.Write("Enter Salary: ");
-            double salary = double.Parse(Console.ReadLine());
-        
-            Employee employee1 = new Employee(emloyeeId, firstName, middleName, lastName, salary);
+                Console.Write("Enter Salary: ");
+                double salary;
+                if (!double.TryParse(Console.ReadLine(), out salary) || salary < 0)
+                throw new ArgumentException("Invalid salary input or salary is less than 0");
 
-            Console.WriteLine("\nEmployee Created Successfully!\n");
-            employee1.DisplayEmployeeInfo();
+                Employee employee1 = new Employee(emloyeeId, firstName, middleName, lastName, salary);
 
-            HRDepartment HumanResources = new HRDepartment { DepartmentName = "Human Resources" };
-            ITDepartment InformationTech = new ITDepartment { DepartmentName = "IT" };
+                Console.WriteLine("\nEmployee Created Successfully!\n");
+                employee1.DisplayEmployeeInfo();
 
-            Console.Write("\n");
-            HumanResources.DisplayDepartmentInfo();
-            Console.WriteLine($"Details: {HumanResources.GetDepartmentDetails()}");
-            HumanResources.Operate();
+                HRDepartment HumanResources = new HRDepartment { DepartmentName = "Human Resources" };
+                ITDepartment InformationTech = new ITDepartment { DepartmentName = "IT" };
 
-            Console.Write("\n");
-            InformationTech.DisplayDepartmentInfo();
-            Console.WriteLine($"Details: {InformationTech.GetDepartmentDetails()}");
-            InformationTech.Operate();
+                Console.Write("\n");
+                HumanResources.DisplayDepartmentInfo();
+                Console.WriteLine($"Details: {HumanResources.GetDepartmentDetails()}");
+                HumanResources.Operate();
+
+                Console.Write("\n");
+                InformationTech.DisplayDepartmentInfo();
+                Console.WriteLine($"Details: {InformationTech.GetDepartmentDetails()}");
+                InformationTech.Operate();
+            }
+            catch (ArgumentException)
+            {
+                Console.WriteLine("Input error.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("An error occured.");
+            }
+            
         }
     }
 }
